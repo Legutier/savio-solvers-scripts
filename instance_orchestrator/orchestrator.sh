@@ -42,7 +42,7 @@ function run_instances() {
 
 function run_instances_v2() {
 	file_rel_path=$1
-	scratch_path="/global/home/users/lukasgutierrezlisboa/scratch"
+	scratch_path=$(pwd -P)
 	find "${scratch_path}/$file_rel_path" -name "*.opb" -maxdepth 1 -exec readlink -f {} \; |
 		parallel \
 		--timeout $seconds_per_solution \

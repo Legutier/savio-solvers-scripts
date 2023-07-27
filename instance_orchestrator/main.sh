@@ -1,5 +1,6 @@
 for folder in $1*; do
 	file_path=$folder
+	scratch_path=$(pwd -P)
 	echo "Number of files: $(ls $file_path -1 | wc -l)"
 	files_number=$(ls $file_path -1 | wc -l)
 
