@@ -20,6 +20,7 @@
 file_relative_path=$1
 seconds_per_solution=$2
 max_jobs=$3
+runner=$4
 module load gnu-parallel/2019.03.22
 function run_instances() {
     # DEPRECATED
@@ -46,7 +47,7 @@ function run_instances_v2() {
 	find "${scratch_path}/$file_rel_path" -name "*.opb" -maxdepth 1 -exec readlink -f {} \; |
 		parallel \
 		--timeout $seconds_per_solution \
-		--jobs $max_jobs ${scratch_path}/instance_runner.sh ${scratch_path}/solver_roundingsat
+		--jobs $max_jobs ${scratch_path}/$runner ${scratch_path}/solver_roundingsat
 }
 
 run_instances_v2 $file_relative_path

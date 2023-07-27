@@ -1,3 +1,6 @@
+#!/bin/bash
+
+$runner=${2:-instance_runner.sh}
 for folder in $1*; do
 	file_path=$folder
 	scratch_path=$(pwd -P)
@@ -21,6 +24,6 @@ for folder in $1*; do
 	if (($file_number > 0))
 	then
 		echo "processing $file_number files on $folder"
-		sbatch --time ${hours}:${minutes}:${seconds} orchestrator.sh $file_path $seconds_per_solution $max_jobs
+		sbatch --time ${hours}:${minutes}:${seconds} orchestrator.sh $file_path $seconds_per_solution $max_jobs $runner
 	fi
 done
