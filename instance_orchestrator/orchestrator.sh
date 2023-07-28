@@ -47,7 +47,7 @@ function run_instances_v2() {
 	find "${scratch_path}/$file_rel_path" -name "*.opb" -maxdepth 1 -exec readlink -f {} \; |
 		parallel \
 		--timeout $seconds_per_solution \
-		--jobs $max_jobs ${scratch_path}/$runner ${scratch_path}/solver_roundingsat
+		--jobs $max_jobs timeout -s SIGTERM 3600 ${scratch_path}/$runner ${scratch_path}/solver_roundingsat
 }
 
 run_instances_v2 $file_relative_path
